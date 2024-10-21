@@ -1,5 +1,5 @@
 ﻿//*********************************************************
-// Практическая работа № 8                              *
+// Практическая работа № 9                             *
 // Выполнила: Беляева Е.А., группа 2-ИСП-д                *
 // Задание: составить программу работы линейного алгоритма*
 //*********************************************************
@@ -8,54 +8,96 @@
 
 
 
-
 using System;
 
-namespace ConsoleApp1
+
+class Program
+
 {
-    using System;
 
-    class Program
+    static void Main()
+
     {
-        static void Main()
+
+        int minNumber = int.MaxValue; // Начальное значение для минимального числа
+
+        int inputNumber;
+
+
+        Console.WriteLine("Введите положительные числа (введите 0 для завершения):");
+
+
+        while (true)
+
         {
-            // Объявляем переменную для хранения минимального значения
-            int minValue = int.MaxValue;
-            int input;
 
-            // Начинаем бесконечный цикл
-            while (true)
+            try
+
             {
-                Console.Title = "Практическая работа №8"; // заголовок консоли
-                Console.BackgroundColor = ConsoleColor.DarkGreen;// цвет консоли
-                Console.ForegroundColor = ConsoleColor.DarkBlue;// цвет текста консоли 
-                
-                Console.WriteLine("Здравствуйте!");
-                Console.Write("Введите положительное число (0 для завершения): ");
-                input = Convert.ToInt32(Console.ReadLine()); // Считываем ввод пользователя
 
-                // Проверяем, если введён 0, выходим из цикла
-                if (input == 0)
+                inputNumber = Convert.ToInt32(Console.ReadLine());
+
+
+                if (inputNumber == 0)
+
                 {
-                    break; // Прерываем цикл
+
+                    break; // Завершение ввода
+
                 }
 
-                // Проверяем, является ли введённое число положительным и меньше текущего минимального
-                if (input > 0 && input < minValue)
+
+                if (inputNumber > 0)
+
                 {
-                    minValue = input; // Обновляем значение минимального числа
+
+                    if (inputNumber < minNumber)
+
+                    {
+
+                        minNumber = inputNumber; // Обновление минимального числа
+
+                    }
+
                 }
+
+                else
+
+                {
+
+                    Console.WriteLine("Пожалуйста, вводите только положительные числа.");
+
+                }
+
             }
 
-            // Проверяем, было ли введено хотя бы одно положительное число
-            if (minValue == int.MaxValue)
+            catch (FormatException)
+
             {
-                Console.WriteLine("Вы не ввели ни одного положительного числа.");
+
+                Console.WriteLine("Ошибка: введите корректное целое число.");
+
             }
-            else
-            {
-                Console.WriteLine("Минимальное число: " + minValue); // Выводим минимальное число
-            } Console.ReadKey();
+
         }
+
+
+        if (minNumber != int.MaxValue)
+
+        {
+
+            Console.WriteLine($"Минимальное число: {minNumber}");
+
+        }
+
+        else
+
+        {
+
+            Console.WriteLine("Не было введено ни одного положительного числа.");
+
+        }
+
     }
+
 }
